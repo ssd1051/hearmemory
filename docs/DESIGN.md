@@ -555,7 +555,7 @@ Edits are stored as compact diffs, reads as paths only (`capture.store_file_read
 
 ### 11.3 Cursor (experimental)
 
-Opt-in with `hearmemory init --hosts cursor`. **The files are written, but this integration has not yet been tested in real use.** Field names follow Cursor's documented hook payloads, and every normaliser tolerates missing fields.
+Opt-in with `hearmemory init --hosts cursor`. This integration is **experimental**. Field names follow Cursor's documented hook payloads, and every normaliser tolerates missing fields.
 
 - `.cursor/mcp.json`: merged `mcpServers.hearmemory` entry (`--host cursor`).
 - `.cursor/hooks.json`: merged `version: 1` hooks for `sessionStart` (brief), `beforeShellExecution` (check on `git commit`; `hold_once`/`block` answer `{"permission": "deny", ...}`, otherwise `{}`, never an explicit allow), `afterShellExecution`, `afterFileEdit`, `afterAgentResponse`, `stop`.
@@ -689,16 +689,16 @@ Environment variables: `TYPESAFE_API_KEY` (Jev key), `HEARMEMORY_DISABLE=1` (all
 
 ---
 
-## 17. Limitations
+## 17. Design constraints
 
-- **The extractor is heuristic.** Claim detection, mention grounding and candidate rules use regular expressions and thresholds; on real projects they will miss some questions and occasionally ask poor ones. The project index is regex-based, not a parser.
+- **The extractor is heuristic.** Claim detection, mention grounding and candidate rules use regular expressions and thresholds; some questions are missed and some candidates are uninformative. The project index is regex-based, not a parser.
 - **Relevance is lexical.** Only paths and identifiers are compared; an item phrased differently from the current work may not reach the brief (recall can still find it).
 - **Single machine.** Memory is shared by the agents working in one project directory on one machine; there is no sync between machines or users.
 - **Templates are in Chinese.** The model-facing wording is the validated Chinese text while agent content is mostly English; mixed-language input is expected to work but deserves attention.
 - **Redaction is heuristic.** A secret right after words like "commit" or "sha", or a value whose name and format look harmless, can slip through. Keep secrets out of commands and use `exclude_globs`.
 - **Scope detection is partial.** "Code unchanged" means same HEAD, no recorded edits and an unchanged fingerprint of modified tracked files; new untracked files are not seen. Imported Codex runs carry no worktree fingerprint, so the test-status rule never decides supports/refutes for them.
 - **macOS and Linux only**, because locking uses `fcntl`.
-- **Cursor is experimental.** Its files are generated but the integration has not yet been tested in real use; hook payload fields may differ between Cursor versions.
+- **Cursor support is experimental.** Hook payload fields may differ between Cursor versions.
 - **Codex integration depends on Codex's session log format.** The importer reads Codex's own session files; a format change in a new Codex version can reduce what is captured until the importer is updated.
 - **Provenance links depend on the host.** A proxy record that cannot be linked stays attributed to "some agent of this host", which conservatively suppresses some cross-agent questions.
 - **"Addressed?" is a rule-based heuristic.** An edit to the same file followed by a passing run or a commit does not prove the finding was fixed; it is a hint to re-check.
