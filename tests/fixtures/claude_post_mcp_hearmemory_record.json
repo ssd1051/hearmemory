@@ -1,0 +1,9 @@
+{
+  "session_id": "s1",
+  "agent_id": "agent-1",
+  "hook_event_name": "PostToolUse",
+  "tool_name": "mcp__hearmemory__hearmemory_record",
+  "tool_input": {"text": "fixed it", "kind": "claim"},
+  "tool_response": {"obs_id": "o-abcdef0123456789"},
+  "tool_use_id": "tu-6"
+}

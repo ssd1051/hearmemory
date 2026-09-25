@@ -1,0 +1,8 @@
+.hearmemory/
+.venv*
+__pycache__/
+*.pyc
+.pytest_cache/
+dist/
+build/
+*.egg-info/

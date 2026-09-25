@@ -1,0 +1,8 @@
+{
+  "session_id": "s1",
+  "hook_event_name": "PostToolUse",
+  "tool_name": "Bash",
+  "tool_input": {"command": "hearmemory record --kind claim \"fixed it\""},
+  "tool_response": {"stdout": "hearmemory: recorded o-1234567890abcdef\n", "stderr": "", "exit_code": 0},
+  "tool_use_id": "tu-5"
+}

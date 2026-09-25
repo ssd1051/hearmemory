@@ -1,0 +1,11 @@
+{
+  "session_id": "s1",
+  "transcript_path": "/tmp/transcript.jsonl",
+  "cwd": ".",
+  "hook_event_name": "PostToolUseFailure",
+  "tool_name": "Bash",
+  "tool_input": {"command": "sleep 100"},
+  "tool_use_id": "tu-3",
+  "error": "Command was interrupted by the user",
+  "is_interrupt": true
+}

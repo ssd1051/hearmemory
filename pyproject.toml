@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hearmemory"
+version = "0.1.0"
+description = "Shared project memory for coding agents (Claude Code, Codex, Cursor) that checks what agents claim against recorded evidence."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "ssd1051"}]
+requires-python = ">=3.11"
+keywords = ["coding-agents", "claude-code", "codex", "cursor", "mcp", "memory"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development",
+]
+# The core has no third-party dependencies (stdlib only: tomllib, json, fcntl, argparse, subprocess).
+dependencies = []
+
+[project.optional-dependencies]
+jev = ["typesafe-sdk>=0.7"]
+dev = ["pytest>=7", "typesafe-sdk>=0.7"]
+
+[project.urls]
+Homepage = "https://github.com/ssd1051/hearmemory"
+Issues = "https://github.com/ssd1051/hearmemory/issues"
+
+[project.scripts]
+hearmemory = "hearmemory.cli:main"
+hmem = "hearmemory.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+hearmemory = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

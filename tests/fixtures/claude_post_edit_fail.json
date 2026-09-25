@@ -1,0 +1,8 @@
+{
+  "session_id": "s1",
+  "hook_event_name": "PostToolUseFailure",
+  "tool_name": "Edit",
+  "tool_input": {"file_path": "src/a.py", "old_string": "x", "new_string": "y"},
+  "tool_use_id": "tu-4",
+  "error": "old_string not found in file"
+}

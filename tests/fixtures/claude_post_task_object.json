@@ -1,0 +1,28 @@
+{
+  "session_id": "s1",
+  "transcript_path": "/tmp/transcript.jsonl",
+  "cwd": ".",
+  "hook_event_name": "PostToolUse",
+  "tool_name": "Task",
+  "tool_input": {
+    "description": "Investigate stale cache",
+    "subagent_type": "general-purpose",
+    "prompt": "Investigate why the cache returns stale data. Hypothesis: the LRUCache in app/cache.py is stale because TTL is 0 and db.connect() leaks connections. Report the root cause."
+  },
+  "tool_response": {
+    "status": "completed",
+    "prompt": "Investigate why the cache returns stale data. Hypothesis: the LRUCache in app/cache.py is stale because TTL is 0 and db.connect() leaks connections. Report the root cause.",
+    "agentId": "a1b2c3d4",
+    "agentType": "general-purpose",
+    "content": [
+      {"type": "text", "text": "Root cause: app/cache.py sets TTL=0, so LRUCache entries never expire.\nThe db.connect() leak hypothesis is wrong: every connection is closed in app/db.py."},
+      {"type": "tool_reference", "name": "Read"}
+    ],
+    "totalDurationMs": 48211,
+    "totalTokens": 31877,
+    "totalToolUseCount": 9,
+    "usage": {"input_tokens": 12, "cache_creation_input_tokens": 2048, "cache_read_input_tokens": 29000, "output_tokens": 817},
+    "toolStats": {"Read": 6, "Grep": 3}
+  },
+  "tool_use_id": "toolu_task_1"
+}

@@ -1,0 +1,13 @@
+{"type": "session_meta", "timestamp": "2026-09-24T11:00:00.000000Z", "payload": {"id": "sess-abc", "cwd": "{CWD}", "cli_version": "0.142.5", "originator": "codex_cli_rs", "source": "cli"}}
+{"type": "turn_context", "timestamp": "2026-09-24T11:00:01.000000Z", "payload": {"cwd": "{CWD}", "model": "gpt-5-codex"}}
+{"type": "response_item", "timestamp": "2026-09-24T11:00:05.000000Z", "payload": {"type": "function_call", "name": "exec_command", "call_id": "call-1", "arguments": {"cmd": "pytest tests/test_x.py", "workdir": "{CWD}"}}}
+{"type": "response_item", "timestamp": "2026-09-24T11:00:06.000000Z", "payload": {"type": "function_call_output", "call_id": "call-1", "output": "Exit code: 1\n1 failed, 2 passed in 0.10s\nFAILED tests/test_x.py::test_y\n"}}
+{"type": "response_item", "timestamp": "2026-09-24T11:00:10.000000Z", "payload": {"type": "custom_tool_call", "status": "completed", "call_id": "call-2", "name": "apply_patch", "input": "*** Begin Patch\n*** Update File: src/x.py\n@@\n-old\n+new\n*** End Patch\n"}}
+{"type": "response_item", "timestamp": "2026-09-24T11:00:11.000000Z", "payload": {"type": "custom_tool_call_output", "call_id": "call-2", "output": "{\"output\": \"Success. Updated the following files:\\nM src/x.py\\n\", \"metadata\": {\"exit_code\": 0, \"duration_seconds\": 0.0}}"}}
+{"type": "response_item", "timestamp": "2026-09-24T11:00:12.000000Z", "payload": {"type": "function_call", "name": "mcp__hearmemory__hearmemory_record", "call_id": "call-3", "arguments": {"text": "root cause is x", "kind": "claim"}}}
+{"type": "response_item", "timestamp": "2026-09-24T11:00:13.000000Z", "payload": {"type": "function_call_output", "call_id": "call-3", "output": "{\"obs_id\": \"o-1122334455667788\"}"}}
+{"type": "response_item", "timestamp": "2026-09-24T11:00:14.000000Z", "payload": {"type": "function_call", "name": "exec_command", "call_id": "call-4", "arguments": {"cmd": "hearmemory record --kind claim \"done\"", "workdir": "{CWD}"}}}
+{"type": "response_item", "timestamp": "2026-09-24T11:00:15.000000Z", "payload": {"type": "function_call_output", "call_id": "call-4", "output": "hearmemory: recorded o-99aabbccddeeff00\n"}}
+{"type": "event_msg", "timestamp": "2026-09-24T11:00:20.000000Z", "payload": {"type": "user_message", "message": "please fix the sync bug"}}
+{"type": "event_msg", "timestamp": "2026-09-24T11:00:30.000000Z", "payload": {"type": "agent_message", "message": "root cause is a stale cache in src/x.py; fixed."}}
+{"type": "event_msg", "timestamp": "2026-09-24T11:00:31.000000Z", "payload": {"type": "task_complete", "last_agent_message": "root cause is a stale cache in src/x.py; fixed."}}
